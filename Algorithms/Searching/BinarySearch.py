@@ -2,6 +2,7 @@
 # Best case    : 0(1)
 # Average case : 0(log n)
 # Worst case   : 0(log n)
+# Space complexity : 0(1)
 
 
 def binary_search(arr, key):
