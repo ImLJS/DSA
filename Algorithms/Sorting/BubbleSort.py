@@ -1,8 +1,12 @@
 # Bubble Sort in python
+
 # Best Case: O(n)
 # Average Case: O(n^2)
 # Worst Case: O(n^2)
 # Space Complexity: O(1)
+
+# Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements
+# if they are in wrong order.
 
 
 def bubbleSort(arr):
