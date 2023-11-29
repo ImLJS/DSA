@@ -1,4 +1,8 @@
 # Bubble Sort in python
+# Best Case: O(n)
+# Average Case: O(n^2)
+# Worst Case: O(n^2)
+# Space Complexity: O(1)
 
 
 def bubbleSort(arr):
@@ -6,6 +10,7 @@ def bubbleSort(arr):
     for i in range(n):
         swapped = False
         for j in range(0, n - i - 1):
+            print(j)
             if arr[j] > arr[j + 1]:
                 # Swap
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
