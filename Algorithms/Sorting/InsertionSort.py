@@ -9,7 +9,8 @@
 # It has a sublist of sorted elements and the other sublist of unsorted elements. Initially, the sorted sublist
 # contains the first element of the array and the unsorted sublist contains the rest. At each iteration, insertion
 # sort removes an element from the unsorted sublist, finds its correct position in the sorted sublist, and inserts
-# it there. It repeats until no input elements remain.
+# it there. It repeats until no input elements remain. The choice of the element being removed from the unsorted
+# sublist is random and this process is repeated until all the elements in the list are sorted.
 
 
 def insertion_sort(arr):
