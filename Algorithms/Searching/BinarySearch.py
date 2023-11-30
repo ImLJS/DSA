@@ -4,6 +4,9 @@
 # Worst case   : 0(log n)
 # Space complexity : 0(1)
 
+# Binary search is a searching algorithm that searches a target value within a sorted array. It compares the target
+# value to the middle element of the array. If they are not equal, the half in which the target cannot lie is
+
 
 def binary_search(arr, key):
     start = 0
