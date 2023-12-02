@@ -1,7 +1,7 @@
 # Binary Search Algorithm
-# Best case    : 0(1)
-# Average case : 0(log n)
-# Worst case   : 0(log n)
+# Best case        : 0(1)
+# Average case     : 0(log n)
+# Worst case       : 0(log n)
 # Space complexity : 0(1)
 
 # Binary search is a searching algorithm that searches a target value within a sorted array. It compares the target
