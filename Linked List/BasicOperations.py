@@ -22,10 +22,10 @@ class LinkedList:
         self.head = None
         self.size = 0
 
-    def __str__(self):
+    def traversal(self):
         temp = self.head
         while temp:
-            print(temp.data, end=" ")
+            print(temp.data, end="\n")
             temp = temp.next
 
     def append_at_end(self, data):
@@ -85,3 +85,9 @@ class LinkedList:
         node.next = temp.next
         temp.next = node
         self.size += 1
+
+
+ll = LinkedList()
+for i in range(10, 101, 10):
+    ll.append_at_end(i)
+print(ll.traversal())
