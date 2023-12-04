@@ -1,3 +1,4 @@
 # Python-Practise
 
-Sorting
+- Sorting
+- Searching
