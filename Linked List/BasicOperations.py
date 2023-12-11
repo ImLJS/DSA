@@ -22,72 +22,72 @@ class LinkedList:
         self.head = None
         self.size = 0
 
-    def traversal(self):
-        temp = self.head
-        while temp:
-            print(temp.data, end="\n")
-            temp = temp.next
-
-    def append_at_end(self, data):
+    def insert_at_begin(self, data):
         node = Node(data)
 
-        if not self.head:
+        if self.head:
+            node.next = self.head
             self.head = node
-            self.size += 1
-            return
-        temp = self.head
+        else:
+            self.head = node
 
-        while temp.next:
-            temp = temp.next
-        temp.next = node
+        return
 
-    def search(self, data):
-        temp = self.head
-        while temp:
-            if temp.data == data:
-                return True
-            temp = temp.next
-        return False
+    def insert_at_end(self, data):
+        node = Node(data)
+        if self.head:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = node
+        else:
+            self.head = node
 
-    def delete(self, data):
-        if self.head.data == data:
-            self.head = self.head.next
-            return
+    def insert_at_location(self, data, index):
+        node = Node(data)
         current = self.head
-        previous = None
+        pos = 0
 
-        while current:
-            if current.data == data:
-                previous.next = current.next
-                return
-            previous = current
+        if self.head:
+            while current and pos + 1 != index:
+                pos += 1
+                current = current.next
+
+            if current:
+                node.next = current.next
+                current.next = node
+            else:
+                return -1
+
+    def update(self, data, index):
+        pos = 0
+        current = self.head
+
+        while current and pos != index:
+            pos += 1
             current = current.next
 
-    def append_at_beginning(self, data):
-        node = Node(data)
-        node.next = self.head
-        self.head = node
-        self.size += 1
+        if current:
+            current.data = data
+        else:
+            return -1
 
-    def append_at_position(self, data, position):
-        if position < 0 or position > self.size:
-            raise Exception("Invalid position")
-        if position == 0:
-            self.append_at_beginning(data)
-            return
-        if position == self.size:
-            self.append_at_end(data)
-            return
-        node = Node(data)
-        temp = self.head
-        for i in range(position - 1):
-            temp = temp.next
-        node.next = temp.next
-        temp.next = node
-        self.size += 1
+    def print(self):
+        current = self.head
+        while current:
+            print(current.data)
+            current = current.next
 
 
 ll = LinkedList()
-for i in range(10, 101, 10):
-    ll.append_at_end(i)
-print(ll.traversal())
+ll.insert_at_end(1)
+ll.insert_at_end(2)
+ll.insert_at_end(3)
+ll.insert_at_begin(4)
+# ll.print()
+
+ll.insert_at_location(5, 2)
+# ll.print()
+
+ll.update(6, 3)
+ll.print()
