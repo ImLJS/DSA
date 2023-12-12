@@ -11,114 +11,184 @@
 # Deleting a node in the middle/or at any given position in the list
 
 
+# Create a Node class to create a node
 class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
 
 
+# Create a LinkedList class
+
+
 class LinkedList:
     def __init__(self):
         self.head = None
-        self.size = 0
 
-    def insert_at_begin(self, data):
-        node = Node(data)
-
-        if self.head:
-            node.next = self.head
-            self.head = node
+    # Method to add a node at begin of LL
+    def insertAtBegin(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
         else:
-            self.head = node
+            new_node.next = self.head
+            self.head = new_node
 
-        return
-
-    def insert_at_end(self, data):
-        node = Node(data)
-        if self.head:
-            current = self.head
-            while current.next:
-                current = current.next
-            current.next = node
+    # Method to add a node at any index
+    # Indexing starts from 0.
+    def insertAtIndex(self, data, index):
+        new_node = Node(data)
+        current_node = self.head
+        position = 0
+        if position == index:
+            self.insertAtBegin(data)
         else:
-            self.head = node
+            while current_node and position + 1 != index:
+                position = position + 1
+                current_node = current_node.next
 
-    def insert_at_location(self, data, index):
-        node = Node(data)
-        current = self.head
-        pos = 0
-
-        if self.head:
-            while current and pos + 1 != index:
-                pos += 1
-                current = current.next
-
-            if current:
-                node.next = current.next
-                current.next = node
+            if current_node:
+                new_node.next = current_node.next
+                current_node.next = new_node
             else:
-                return -1
+                print("Index not present")
 
-    def update(self, data, index):
-        pos = 0
-        current = self.head
+    # Method to add a node at the end of LL
 
-        while current and pos != index:
-            pos += 1
-            current = current.next
-
-        if current:
-            current.data = data
-        else:
-            return -1
-
-    def delete_begin(self):
-        if self.head:
-            self.head = self.head.next
-        else:
+    def insertAtEnd(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
             return
 
-    def delete_end(self):
-        if self.head:
-            current = self.head
-            while current.next.next:
-                current = current.next
-            current.next = None
+        current_node = self.head
+        while current_node.next:
+            current_node = current_node.next
+
+        current_node.next = new_node
+
+    # Update node of a linked list
+    # at given position
+    def updateNode(self, val, index):
+        current_node = self.head
+        position = 0
+        if position == index:
+            current_node.data = val
         else:
+            while current_node and position != index:
+                position = position + 1
+                current_node = current_node.next
+
+            if current_node:
+                current_node.data = val
+            else:
+                print("Index not present")
+
+    # Method to remove first node of linked list
+
+    def remove_first_node(self):
+        if self.head is None:
             return
 
-    def delete_index(self, index):
-        current = self.head
-        pos = 0
+        self.head = self.head.next
 
-        while current and pos != index - 1:
-            pos += 1
-            current = current.next
-
-        if current:
-            current.next = current.next.next
-        else:
+    # Method to remove last node of linked list
+    def remove_last_node(self):
+        if self.head is None:
             return
 
-    def print(self):
-        current = self.head
-        while current:
-            print(current.data)
-            current = current.next
+        current_node = self.head
+        while current_node.next.next:
+            current_node = current_node.next
 
-    def sizeLL(self):
+        current_node.next = None
+
+    # Method to remove at given index
+    def remove_at_index(self, index):
+        if self.head is None:
+            return
+
+        current_node = self.head
+        position = 0
+        if position == index:
+            self.remove_first_node()
+        else:
+            while current_node and position + 1 != index:
+                position = position + 1
+                current_node = current_node.next
+
+            if current_node:
+                current_node.next = current_node.next.next
+            else:
+                print("Index not present")
+
+    # Method to remove a node from linked list
+    def remove_node(self, data):
+        current_node = self.head
+
+        if current_node.data == data:
+            self.remove_first_node()
+            return
+
+        while current_node and current_node.next.data != data:
+            current_node = current_node.next
+
+        if current_node:
+            return
+        else:
+            current_node.next = current_node.next.next
+
+    # Print the size of linked list
+    def sizeOfLL(self):
         size = 0
-        current = self.head
-        while current:
-            size += 1
-            current = current.next
-        return size
+        if self.head:
+            current_node = self.head
+            while current_node:
+                size = size + 1
+                current_node = current_node.next
+            return size
+        else:
+            return 0
+
+    # print method for the linked list
+    def printLL(self):
+        current_node = self.head
+        while current_node:
+            print(current_node.data)
+            current_node = current_node.next
 
 
-ll = LinkedList()
-ll.insert_at_end(1)
-ll.insert_at_end(2)
-ll.insert_at_end(3)
-ll.insert_at_begin(4)
+# create a new linked list
+llist = LinkedList()
 
-ll.print()
+# add nodes to the linked list
+llist.insertAtEnd("a")
+llist.insertAtEnd("b")
+llist.insertAtBegin("c")
+llist.insertAtEnd("d")
+llist.insertAtIndex("g", 2)
+
+# print the linked list
+print("Node Data")
+llist.printLL()
+
+# remove a nodes from the linked list
+print("\nRemove First Node")
+llist.remove_first_node()
+print("Remove Last Node")
+llist.remove_last_node()
+print("Remove Node at Index 1")
+llist.remove_at_index(1)
+
+
+# print the linked list again
+print("\nLinked list after removing a node:")
+llist.printLL()
+
+print("\nUpdate node Value")
+llist.updateNode("z", 0)
+llist.printLL()
+
+print("\nSize of linked list :", end=" ")
+print(llist.sizeOfLL())
