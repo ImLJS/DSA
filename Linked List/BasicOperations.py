@@ -106,13 +106,19 @@ class LinkedList:
             print(current.data)
             current = current.next
 
+    def sizeLL(self):
+        size = 0
+        current = self.head
+        while current:
+            size += 1
+            current = current.next
+        return size
+
 
 ll = LinkedList()
 ll.insert_at_end(1)
 ll.insert_at_end(2)
 ll.insert_at_end(3)
 ll.insert_at_begin(4)
-
-ll.delete_index(2)
 
 ll.print()
