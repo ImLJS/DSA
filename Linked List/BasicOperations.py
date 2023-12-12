@@ -72,6 +72,34 @@ class LinkedList:
         else:
             return -1
 
+    def delete_begin(self):
+        if self.head:
+            self.head = self.head.next
+        else:
+            return
+
+    def delete_end(self):
+        if self.head:
+            current = self.head
+            while current.next.next:
+                current = current.next
+            current.next = None
+        else:
+            return
+
+    def delete_index(self, index):
+        current = self.head
+        pos = 0
+
+        while current and pos != index - 1:
+            pos += 1
+            current = current.next
+
+        if current:
+            current.next = current.next.next
+        else:
+            return
+
     def print(self):
         current = self.head
         while current:
@@ -84,10 +112,7 @@ ll.insert_at_end(1)
 ll.insert_at_end(2)
 ll.insert_at_end(3)
 ll.insert_at_begin(4)
-# ll.print()
 
-ll.insert_at_location(5, 2)
-# ll.print()
+ll.delete_index(2)
 
-ll.update(6, 3)
 ll.print()
