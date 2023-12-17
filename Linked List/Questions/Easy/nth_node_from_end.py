@@ -26,6 +26,7 @@ def nth_node_from_end(head, n):
     slow = head
     fast = head
 
+    # Move fast pointer to n nodes from head
     for i in range(n):
         if fast is None:
             return -1
