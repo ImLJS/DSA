@@ -4,3 +4,4 @@
 - Searching
 - Lists
 - Stack
+- Binary Tree
