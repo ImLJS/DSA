@@ -1,6 +1,6 @@
 # Python-Practise
 
-- Sorting
+1. Sorting
 - Searching
 - Lists
 - Stack
