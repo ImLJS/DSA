@@ -1,7 +1,7 @@
 # Python-Practise
 
 1. Sorting
-- Searching
+ Searching
 - Lists
 - Stack
 - Binary Tree
