@@ -2,5 +2,6 @@
 
 1. Sorting
 2. Searching
-3. ListsStack
+3. Lists
+4. Stack
 - Binary Tree
