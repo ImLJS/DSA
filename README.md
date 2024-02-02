@@ -3,5 +3,4 @@
 1. Sorting
 2. Searching
 3. Lists
-4. Stack
-Binary Tree
+4. StackBinary Tree
