@@ -4,4 +4,4 @@
 2. Searching
 3. Lists
 4. Stack
-- Binary Tree
+Binary Tree
