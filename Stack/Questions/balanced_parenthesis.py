@@ -23,7 +23,7 @@ def is_balanced_parenthesis(string):
             else:
                 return False
 
-    return not bool(len(stack))
+    return not stack
 
 
 arr = ["([][]({})", "([])", "((()))"]
