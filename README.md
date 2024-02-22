@@ -5,4 +5,3 @@
 3. Lists
 4. Stack
 5. Binary Tree
-6. 
