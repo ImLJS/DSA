@@ -24,8 +24,35 @@ def slidingWindow(arr, k):
     return maxSum
 
 
-arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+# Q. Given an array return true if there are two elements within the window of size k that are equal
 
-k = 3
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 
-print(slidingWindow(arr, k))  # Output: 24
+
+def slidingWindowOpt(arr, k):
+    n = len(arr)
+    window = set()
+    L = 0
+
+    for R in range(n):
+        if R - L + 1 > k:
+            window.remove(arr[L])
+            L += 1
+
+        if arr[R] in window:
+            return True
+
+        window.add(arr[R])
+
+    return False
+
+
+arr1 = [1, 2, -3, 4, -5, 6, -7, 8, -9]
+arr2 = [1, 2, 3, 2, 4, 3, 3]
+
+k1 = 3
+k2 = 2
+
+print(slidingWindow(arr1, k1))  # Output: 7
+print(slidingWindowOpt(arr2, k2))  # Output: True
