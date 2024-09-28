@@ -1,4 +1,4 @@
-Questions Solved in LeetCode:
+# Questions Solved in LeetCode - Arrays:
 
 1. Static Array
 

@@ -21,6 +21,40 @@ def kadanes(arr):
     return maxSum
 
 
+# Used to find the maximum sum of a subarray in an array
+def kadanesAlternate(arr):
+    maxSum = arr[0]  # Initialize the maximum sum to the first element of the array
+    curSum = 0  # Initialize the current sum to 0
+
+    for i in arr:
+        curSum = max(i, curSum + i)
+        maxSum = max(maxSum, curSum)
+    return maxSum
+
+
+# Used to find the maximum sum of a subarray in a circular array
+def kadanesCircular(arr):
+    maxSum, minSum = (
+        arr[0],
+        arr[0],
+    )  # Initialize the maximum and minimum sum to the first element of the array
+    curMax, curMin = (
+        arr[0],
+        arr[0],
+    )  # Initialize the current maximum and minimum sum to the first element of the array
+    total = arr[0]  # Initialize the total sum to the first element of the array
+    n = len(arr)
+    for i in range(1, n):
+        curMax = max(arr[i], curMax + arr[i])  # Calculate the current maximum sum
+        maxSum = max(maxSum, curMax)  # Update the maximum sum
+        curMin = min(arr[i], curMin + arr[i])  # Calculate the current minimum sum
+        minSum = min(minSum, curMin)  # Update the minimum sum
+        total += arr[i]  # Calculate the total sum
+    return (
+        max(maxSum, total - minSum) if maxSum > 0 else maxSum
+    )  # Return the maximum sum
+
+
 # Used to find the indices of the maximum sum subarray in an array
 def kadanesSlidingWindow(arr):
     maxSum = arr[0]  # Initialize the maximum sum to the first element of the array
@@ -44,5 +78,5 @@ def kadanesSlidingWindow(arr):
 
 arr = [4, -1, 2, -7, 3, 4]
 
-print(kadanes(arr))
-print(kadanesSlidingWindow(arr))
+print(kadanes(arr))  # Output: 7
+print(kadanesSlidingWindow(arr))  # Output: [4, 5]
