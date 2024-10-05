@@ -9,7 +9,7 @@ from collections import deque
 
 
 # For Acyclic Graphs
-def bfs(graph, source):
+def bfs_acyclic(graph, source):
     queue = deque([source])  # Initialize the queue with the source node
 
     while queue:
@@ -22,7 +22,7 @@ def bfs(graph, source):
 # For Cyclic Graphs
 
 
-def bfs(graph, source):
+def bfs_cyclic(graph, source):
     queue = deque([source])  # Initialize the queue with the source node
     visited = set([source])  # Initialize the visited set with the source node
 
@@ -35,8 +35,7 @@ def bfs(graph, source):
                 visited.add(neighbour)  # Add the neighbour to the visited set
 
 
-graph = {"a": ["b", "c"], "b": ["d"], "c": ["e"], "d": ["f"], "e": [], "f": []}
-graph_cyclic = {
+graph = {
     "a": ["b", "c"],
     "b": ["d"],
     "c": ["e"],
@@ -47,5 +46,4 @@ graph_cyclic = {
 
 source = "a"
 
-bfs(graph, source)  # a b c d e f
-bfs(graph_cyclic, source)  # a b c d e f
+bfs_acyclic(graph, source)  # a b c d e f

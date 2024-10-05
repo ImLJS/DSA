@@ -19,18 +19,18 @@
 from collections import deque
 
 
-def hasPath_dfs(graph, source, destination):
+def has_path_dfs(graph, source, destination):
     if source == destination:  # If the source is the destination
         return True
 
     for neighbor in graph[source]:  # Iterate over the neighbors of the source
-        if hasPath_dfs(graph, neighbor, destination):  # Recursively call the function
+        if has_path_dfs(graph, neighbor, destination):  # Recursively call the function
             return True
 
     return False
 
 
-def hasPath_bfs(graph, source, destination):
+def has_path_bfs(graph, source, destination):
     queue = deque([source])  # Initialize the queue with the source node
 
     while queue:
@@ -48,13 +48,13 @@ graph = {"a": ["b", "c"], "b": ["d"], "c": ["e"], "d": ["f"], "e": [], "f": []}
 source = "a"
 destination = "f"
 
-print(hasPath_dfs(graph, source, destination))  # True
-print(hasPath_bfs(graph, source, destination))  # True
+print(has_path_dfs(graph, source, destination))  # True
+print(has_path_bfs(graph, source, destination))  # True
 
 graph = {"a": ["b", "c"], "b": ["d"], "c": ["e"], "d": ["f"], "e": [], "f": []}
 
 source = "a"
 destination = "g"
 
-print(hasPath_dfs(graph, source, destination))  # False
-print(hasPath_bfs(graph, source, destination))  # False
+print(has_path_dfs(graph, source, destination))  # False
+print(has_path_bfs(graph, source, destination))  # False

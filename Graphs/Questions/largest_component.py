@@ -1,4 +1,6 @@
 # Q. Largest Component
+from sys import maxsize
+
 
 # Given an undirected graph, find the size of the largest connected component.
 
@@ -13,16 +15,16 @@
 def largest_component(
     graph,
 ):  # O(V + E) time, O(V) space where V is the number of vertices and E is the number of edges
-    maxSize = 0  # Initialize the maximum size of the connected component
+    max_size = 0  # Initialize the maximum size of the connected component
     visit = set()  # Initialize the set to store the visited nodes
 
     for node in graph:
         size = dfs(graph, node, visit)  # Call the dfs function
-        maxSize = max(
-            size, maxSize
+        max_size = max(
+            size, max_size
         )  # Update the maximum size of the connected component
 
-    return maxSize  # Return the maximum size of the connected component
+    return max_size  # Return the maximum size of the connected component
 
 
 def dfs(graph, node, visit):

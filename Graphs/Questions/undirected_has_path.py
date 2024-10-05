@@ -18,7 +18,7 @@
 from collections import defaultdict
 
 
-def convertToAdj(edges):  # O(E)
+def convert_to_adjacency(edges):  # O(E)
     graph = defaultdict(list)  # Create a defaultdict
     for u, v in edges:  # Iterate over the edges
         graph[u].append(v)  # Append the vertex v to the vertex u
@@ -43,8 +43,8 @@ def dfs(
     return False  # Return False if no path is found
 
 
-def hasPath(edges, src, dst):  # O(V+E)
-    graph = convertToAdj(edges)  # Convert the edges to adjacency list
+def has_path(edge, src, dst):  # O(V+E)
+    graph = convert_to_adjacency(edge)  # Convert the edges to adjacency list
     return dfs(graph, src, dst, set())  # Call the dfs function
 
 
@@ -58,5 +58,5 @@ edges = [
     ("q", "t"),
 ]
 
-print(hasPath(edges, "a", "b"))  # True
-print(hasPath(edges, "a", "q"))  # False
+print(has_path(edges, "a", "b"))  # True
+print(has_path(edges, "a", "q"))  # False
