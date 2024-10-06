@@ -1,9 +1,10 @@
 # Q. Island Count
 
-# Given a 2D array binaryMatrix of W's and L's (W representing water and L representing land),
-# return the number of islands in binaryMatrix.
+# Given a 2D array matrix of W's and L's (W representing water and L representing land),
+# return the number of islands in matrix.
 
-# An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically.
+# An island is surrounded by water and is formed by connecting adjacent lands
+# horizontally or vertically.
 
 
 def dfs(matrix, row, col, visited):  # Depth First Search
