@@ -56,5 +56,5 @@ Exercises and implementations for graph data structures:
 To get started with the exercises, clone the repository:
 
 ```sh
-git clone https://github.com/ImLJS/dsa.git
-cd dsa
+git clone https://github.com/ImLJS/DSA.git
+cd DSA
