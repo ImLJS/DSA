@@ -18,26 +18,39 @@
 
 def topological_sort(graph):  # Depth First Search
     def dfs(node):
-        visited.add(node)  # Add the node to the visited set
-        for neighbor in graph[node]:  # For each neighbor of the node,
-            if neighbor not in visited:  # If the neighbor has not been visited,
-                dfs(neighbor)  # Recursively call the function on the neighbor
-        result.append(node)  # Add the node to the result list
+        if node in cycle:  # If the node is in the cycle set, return False
+            return False
+        if node in visited:  # If the node is in the visited set, return True
+            return True
 
-    visited = set()  # Create a visited set
-    result = []  # Create a result list
-    for node in graph:  # For each node in the graph,
-        if node not in visited:  # If the node has not been visited,
-            dfs(node)  # Call the dfs function on the node
-    return result[::-1]  # Return the result list in reverse order
+        cycle.add(node)  # Add the node to the cycle set
+        for neighbor in graph[node]:  # For each neighbor of the node
+            if not dfs(neighbor):  # If the neighbor is not visited, return False
+                return False
+        cycle.remove(node)  # Remove the node from the cycle set
+
+        visited.add(node)
+        result.append(node)
+        return True
+
+    visited = set()
+    cycle = set()
+    result = []
+
+    for node in graph:
+        if not dfs(node):
+            return []  # Cycle detected, return empty list
+
+    return result[::-1]  # Return reversed result for correct topological order
 
 
-graph = {
-    "A": ["C", "D"],
-    "B": ["D"],
-    "C": ["E"],
-    "D": ["E"],
-    "E": [],
-}
+# Example usage:
+if __name__ == "__main__":
+    # Example graph represented as a dictionary
+    example_graph = {"A": ["B", "C"], "B": ["D"], "C": ["D"], "D": ["E"], "E": []}
 
-print(topological_sort(graph))  # ['A', 'B', 'D', 'C', 'E'] or ['B', 'A', 'D', 'C', 'E']
+    order = topological_sort(example_graph)
+    if order:
+        print("Topological order:", order)
+    else:
+        print("No valid topological order exists (cycle detected)")
