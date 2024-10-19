@@ -1,82 +1,65 @@
-# Prims Algorithm
+# Prims Algorithm for Minimum Spanning Tree
 
 # Prim's Algorithm is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph.
-# This means it finds a subset of the edges that forms a tree that includes every vertex,
-# where the total weight of all the edges in the tree is minimized.
+# This algorithm maintains a set of vertices that have been visited and a set of vertices that have not been visited.
+# The algorithm starts with an arbitrary vertex and adds the vertex with the smallest edge weight to the visited set.
+# The algorithm continues to add the vertex with the smallest edge weight to the visited set until all vertices have been visited.
+# The algorithm uses a min heap to keep track of the vertices that have not been visited and the edge weights between the visited and unvisited vertices.
+# The algorithm returns the total weight of the minimum spanning tree.
 
-# Time Complexity: O(V^2)
+# Time Complexity: O(E log V)
 # Space Complexity: O(V)
 
-# Algorithm:
+# Prim's Algorithm using min heap
 
-# 1. Create a set mstSet that keeps track of vertices already included in MST.
-# 2. Assign a key value to all vertices in the input graph. Initialize all key values as INFINITE.
-#    Assign key value as 0 for the first vertex so that it is picked first.
-# 3. While mstSet doesn't include all vertices:
-#     a. Pick a vertex u which is not there in mstSet and has minimum key value.
-#     b. Include u to mstSet.
-#     c. Update key value of all adjacent vertices of u. To update the key values, iterate through all adjacent vertices.
-#        For every adjacent vertex v, if weight of edge u-v is less than the previous key value of v, update the key value as weight of u-v.
-
-# Implementation:
-
-from collections import defaultdict
+from heapq import heappush, heappop
 
 
-def prims(graph):
-    V = len(graph)  # Number of vertices
-    key = [float("inf")] * V  # Key values used to pick minimum weight edge in cut
-    parent = [None] * V  # Array to store constructed MST
-    mstSet = [False] * V  # To represent set of vertices included in MST
-    key[0] = 0  # Make key 0 so that this vertex is picked as first vertex
-    parent[0] = -1  # First node is always root of MST
+def prims_algorithm(n, get_edge_weight):
+    """
+    Template for Prim's Algorithm using min heap
 
-    for _ in range(V):
-        u = minKey(
-            key, mstSet
-        )  # Pick the minimum key vertex from the set of vertices not yet included in MST
-        mstSet[u] = True  # Add the picked vertex to the MST Set
-        for v in range(V):
-            if (
-                graph[u][v] and not mstSet[v] and graph[u][v] < key[v]
-            ):  # Update key value and parent index of the adjacent vertices of the picked vertex
-                key[v] = graph[u][
-                    v
-                ]  # Update the key only if graph[u][v] is smaller than key[v]
-                parent[v] = u  # Set the parent of vertex v to u
+    Args:
+        n: Number of vertices (0 to n-1)
+        get_edge_weight: Function that returns weight between two vertices
 
-    return parent  # Return the constructed MST
+    Returns:
+        Total weight of the Minimum Spanning Tree
+    """
+    seen = set()  # Set of vertices that have been visited
+    total_cost = 0  # Total weight of the Minimum Spanning Tree
+    min_heap = [(0, 0)]  # (weight, vertex)
+
+    while len(seen) < n:  # Continue until all vertices have been visited
+        weight, curr_vertex = heappop(
+            min_heap
+        )  # Get the vertex with the smallest edge weight
+
+        if curr_vertex in seen:  # Skip if the vertex has already been visited
+            continue
+
+        seen.add(curr_vertex)  # Add the vertex to the visited set
+        total_cost += weight  # Add the edge weight to the total cost
+
+        for next_vertex in range(
+            n
+        ):  # Add the vertices that have not been visited to the min heap
+            if next_vertex not in seen:  # Skip if the vertex has already been visited
+                edge_weight = get_edge_weight(
+                    curr_vertex, next_vertex
+                )  # Get the edge weight between the two vertices
+                heappush(
+                    min_heap, (edge_weight, next_vertex)
+                )  # Add the edge weight and the vertex to the min heap
+
+    return total_cost  # Return the total weight of the Minimum Spanning Tree
 
 
-def minKey(key, mstSet):
-    min = float("inf")  # Initialize min value
-    min_index = -1  # Initialize min_index
-    for v in range(len(key)):
-        if (
-            key[v] < min and not mstSet[v]
-        ):  # Pick the minimum key vertex from the set of vertices not yet included in MST
-            min = key[v]  # Update the min value
-            min_index = v  # Update the min_index
-    return min_index
+# Example for points problem:
+def minCostConnectPoints(points):  # points = [[x1, y1], [x2, y2], ...]
+    def get_manhattan_distance(
+        i, j
+    ):  # Function to calculate the Manhattan distance between two points
+        return abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1])
 
-
-# Example:
-
-graph = [
-    [0, 2, 0, 6, 0],
-    [2, 0, 3, 8, 5],
-    [0, 3, 0, 0, 7],
-    [6, 8, 0, 0, 9],
-    [0, 5, 7, 9, 0],
-]
-
-parent = prims(graph)  # Construct the MST
-for i in range(1, len(parent)):  # Print the constructed MST
-    print(parent[i], "-", i, ":", graph[i][parent[i]])  # Print the edge and its weight
-
-# Output:
-
-# 0 - 1 : 2
-# 1 - 2 : 3
-# 0 - 3 : 6
-# 1 - 4 : 5
+    return prims_algorithm(len(points), get_manhattan_distance)
