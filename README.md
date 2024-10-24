@@ -10,6 +10,7 @@ This repository contains various Python practice exercises focusing on fundament
 4. [Stack](#stack)
 5. [Linked List](#linked-list)
 6. [Graphs](#graphs)
+7. [Dynamic Programming](#dynamic)
 
 ## Sorting
 
