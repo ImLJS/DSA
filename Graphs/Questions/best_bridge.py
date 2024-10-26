@@ -32,27 +32,31 @@
 def best_bridge(grid):
 
     def dfs(grid, i, j):
-        if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] != "L":
+        if (
+            i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] != "L"
+        ):  # out of bounds or not land
             return
-        grid[i][j] = "W"
-        islands[-1].append((i, j))
-        for di, dj in [(0, 1), (0, -1), (1, 0), (-1, 0)]:
+        grid[i][j] = "W"  # mark as visited
+        islands[-1].append((i, j))  # add to current island
+        for di, dj in [(0, 1), (0, -1), (1, 0), (-1, 0)]:  # check all 4 directions
             dfs(grid, i + di, j + dj)
 
-    islands = [[]]
-    for i in range(len(grid)):
+    islands = [[]]  # store the two islands
+    for i in range(len(grid)):  # find the two islands
         for j in range(len(grid[0])):
-            if grid[i][j] == "L":
-                dfs(grid, i, j)
+            if grid[i][j] == "L":  # if land
+                dfs(grid, i, j)  # dfs to find the island
                 islands.append([])
 
-    island1, island2 = islands[0], islands[1]
-    min_bridge = float("inf")
-    for i1, j1 in island1:
+    island1, island2 = islands[0], islands[1]  # get the two islands
+    min_bridge = float("inf")  # store the minimum bridge length
+    for i1, j1 in island1:  # check all pairs of land cells from the two islands
         for i2, j2 in island2:
-            min_bridge = min(min_bridge, abs(i1 - i2) + abs(j1 - j2) - 1)
+            min_bridge = min(
+                min_bridge, abs(i1 - i2) + abs(j1 - j2) - 1
+            )  # update the minimum bridge length
 
-    return min_bridge
+    return min_bridge  # return the minimum bridge length
 
 
 grid = [
