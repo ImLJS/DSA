@@ -31,20 +31,20 @@
 
 def longest_path(graph):  # O(V+E)
     def dfs(node):
-        if node in cache:  # memoization
+        if node in cache:  # If node is in cache, return the value
             return cache[node]
-        if not graph[node]:  # base case
+        if not graph[node]:  # If no neighbors,
             return 0
-        max_path = 0
+        max_path = 0  # Initialize max path
         for neighbor in graph[node]:
-            max_path = max(max_path, dfs(neighbor) + 1)
-        cache[node] = max_path
+            max_path = max(max_path, dfs(neighbor) + 1)  # max path from neighbor + 1
+        cache[node] = max_path  # Store the max path in cache
         return max_path
 
-    cache = {}
-    maxpath = 0
+    cache = {}  # Store the max path for each node
+    maxpath = 0  # Initialize max path
     for node in graph:
-        maxpath = max(maxpath, dfs(node))
+        maxpath = max(maxpath, dfs(node))  # max path from each node
     return maxpath
 
 
