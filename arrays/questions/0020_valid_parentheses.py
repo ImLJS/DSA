@@ -13,7 +13,10 @@
 # Input: s = "()"
 # Output: true
 
-# Approach
+# Approach: Adding opening brackets to stack and checking for closing brackets
+
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 
 def isValid(s):
     stack = []

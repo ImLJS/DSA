@@ -9,7 +9,11 @@
 # Output: 2, nums = [1,2,_]
 # Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively. It does not matter what you leave beyond the returned k (hence they are underscores).
 
-# Approach
+# Approach: Compare each element with the previous one and use a pointer to track the position of the next unique element.
+
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+
 def removeDuplicates(nums):
     if not nums:
         return 0

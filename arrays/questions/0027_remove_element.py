@@ -10,6 +10,10 @@
 # Explanation: Your function should return k = 2, with the first two elements of nums being 2. It does not matter what you leave beyond the returned k (hence they are underscores).
 
 # Approach
+
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+
 def removeElement(nums, val):
     k = 0  # Pointer for the next position to place a non-val element
     for i in range(len(nums)):

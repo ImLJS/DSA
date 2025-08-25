@@ -10,7 +10,10 @@
 # Output: [2,3,5,4,1,7]
 # Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is [2,3,5,4,1,7].
 
-# Approach
+# Approach: Iterate through the first half and second half of the array simultaneously and append elements to the result.
+
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 
 def shuffle(nums, n):
     result = []

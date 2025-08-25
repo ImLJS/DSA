@@ -15,7 +15,10 @@
 # Output
 # [null,null,null,null,-3,null,0,-2]
 
-# Approach
+# Approach: Use a stack to store tuples of (value, current_min).
+
+# Time Complexity: O(1) for all operations
+# Space Complexity: O(n)
 
 class MinStack:
     def __init__(self):

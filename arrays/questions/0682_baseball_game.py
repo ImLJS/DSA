@@ -23,7 +23,10 @@
 # "+" - Add 5 + 10 = 15 to the record, record is now [5, 10, 15].
 # The total sum is 5 + 10 + 15 = 30.
 
-# Approach
+# Approach: Use a stack to keep track of the scores and apply operations accordingly.
+
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 
 def calPoints(ops):
     stack = []

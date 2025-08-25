@@ -12,7 +12,10 @@
 # - ans = [nums[0], nums[1], nums[2], nums[0], nums[1], nums[2]]
 # - ans = [1, 2, 1, 1, 2, 1]
 
-# Approach
+# Approach: Use list concatenation to create the new array.
+
+# Time Complexity: O(n)
+# Space Complexity: O(n)
 
 def getConcatenation(nums):
     return nums + nums
